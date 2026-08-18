@@ -4,7 +4,7 @@ import { sendContactMessage } from "../controllers/contactController.js";
 
 const router = Router();
 
-// 5 submissions per 15 minutes per IP — basic spam protection.
+
 const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,

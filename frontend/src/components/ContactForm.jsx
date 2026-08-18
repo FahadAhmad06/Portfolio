@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const initialState = { name: "", email: "", subject: "", message: "", honeypot: "" };
 
 export default function ContactForm() {
@@ -31,7 +33,7 @@ export default function ContactForm() {
     if (!validate()) return;
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
