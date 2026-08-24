@@ -19,7 +19,7 @@ import pak from "../assets/projects/pak.png";
 import pak1 from "../assets/projects/pak1.png";
 import cp from "../assets/projects/c.png";
 import app from "../assets/projects/app.jpeg";
-
+//  added pakcartify images
 
 
 gsap.registerPlugin(ScrollTrigger);
