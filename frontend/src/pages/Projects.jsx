@@ -18,6 +18,7 @@ import uvas from "../assets/projects/uvas.png";
 import pak from "../assets/projects/pak.png";
 import pak1 from "../assets/projects/pak1.png";
 import cp from "../assets/projects/c.png";
+import app from "../assets/projects/app.png";
 
 
 
@@ -117,6 +118,14 @@ const PROJECTS = [
     github: "https://github.com/FahadAhmad06/GPA-Calculator",
     demo: "https://gpacal06.netlify.app/",
     image: uvas,
+  },
+  {
+    title: "PakCartuify-App-Flutter",
+    description:
+      "PakCartuify-App-Flutter is a modern mobile application built with Flutter, designed for seamless shopping experiences and efficient product management.",
+    tech: ["Flutter", "Dart"],
+    github: "https://github.com/FahadAhmad06/PakCartifyApp",
+    image: app,
   },
   {
     title: "Student Record Management System",
