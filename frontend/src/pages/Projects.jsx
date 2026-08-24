@@ -591,7 +591,7 @@ export default function Projects() {
 
               <div>
                 <p className="font-mono text-2xl font-bold text-electricGlow">
-                  09
+                  10
                 </p>
 
                 <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/30">
