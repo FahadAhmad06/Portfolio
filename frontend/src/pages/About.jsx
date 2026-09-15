@@ -17,18 +17,22 @@ const CARDS = [
   {
     icon: Code2,
     label: "Computer Science Student",
+    gradient: "from-cyan-500/20 to-blue-500/10",
   },
   {
     icon: Lightbulb,
     label: "Full-Stack Developer",
+    gradient: "from-purple-500/20 to-pink-500/10",
   },
   {
     icon: Compass,
     label: "Problem Solver",
+    gradient: "from-orange-500/20 to-red-500/10",
   },
   {
     icon: RefreshCcw,
     label: "Continuous Learner",
+    gradient: "from-green-500/20 to-emerald-500/10",
   },
 ];
 
@@ -181,11 +185,40 @@ export default function About() {
         );
 
       /* =====================================================
-         PROFILE FLOAT
+         PROFILE FLOAT - SUPER ENHANCED
       ===================================================== */
 
       gsap.to(scene, {
-        y: -10,
+        y: -20,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(scene, {
+        rotateZ: 2,
+        duration: 5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      /* =====================================================
+         GLOW BREATHING - SUPER ENHANCED
+      ===================================================== */
+
+      gsap.to(glow, {
+        scale: 1.4,
+        opacity: 0.9,
+        duration: 3.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(glow, {
+        filter: "blur(110px)",
         duration: 3,
         repeat: -1,
         yoyo: true,
@@ -193,32 +226,19 @@ export default function About() {
       });
 
       /* =====================================================
-         GLOW BREATHING
-      ===================================================== */
-
-      gsap.to(glow, {
-        scale: 1.18,
-        opacity: 0.6,
-        duration: 2.8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-
-      /* =====================================================
-         IMAGE BREATHING
+         IMAGE BREATHING - SUPER ENHANCED
       ===================================================== */
 
       gsap.to(image, {
-        scale: 1.035,
-        duration: 3.5,
+        scale: 1.05,
+        duration: 4.5,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
       });
 
       /* =====================================================
-         ROTATING 3D RINGS
+         ROTATING 3D RINGS - SUPER ENHANCED
       ===================================================== */
 
       gsap.to(ring1, {
@@ -228,27 +248,51 @@ export default function About() {
         ease: "none",
       });
 
+      gsap.to(ring1, {
+        boxShadow: "0 0 40px rgba(0,255,255,0.8), inset 0 0 30px rgba(0,255,255,0.2)",
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+
       gsap.to(ring2, {
         rotation: -360,
-        duration: 22,
+        duration: 24,
+        repeat: -1,
+        ease: "none",
+      });
+
+      gsap.to(ring2, {
+        boxShadow: "0 0 35px rgba(0,255,255,0.6), inset 0 0 20px rgba(0,255,255,0.15)",
+        duration: 3.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+
+      gsap.to(ring3, {
+        rotation: 360,
+        duration: 32,
         repeat: -1,
         ease: "none",
       });
 
       gsap.to(ring3, {
-        rotation: 360,
-        duration: 30,
+        boxShadow: "0 0 30px rgba(255,255,255,0.2), inset 0 0 15px rgba(0,255,255,0.1)",
+        duration: 3.5,
         repeat: -1,
-        ease: "none",
+        yoyo: true,
+        ease: "sine.inOut"
       });
 
       /* =====================================================
-         IMAGE LIGHT SWEEP
+         IMAGE LIGHT SWEEP - SUPER ENHANCED
       ===================================================== */
 
       const lightSweep = gsap.timeline({
         repeat: -1,
-        repeatDelay: 3,
+        repeatDelay: 4,
       });
 
       lightSweep
@@ -258,31 +302,41 @@ export default function About() {
         })
         .to(shine, {
           opacity: 1,
-          duration: 0.3,
+          duration: 0.5,
           ease: "power1.in",
         })
         .to(shine, {
-          x: "350%",
-          duration: 1.4,
+          x: "400%",
+          duration: 1.8,
           ease: "power2.inOut",
         })
         .to(shine, {
           opacity: 0,
-          duration: 0.25,
+          duration: 0.4,
         });
 
       /* =====================================================
-         FLOATING PARTICLES
+         FLOATING PARTICLES - SUPER ENHANCED
       ===================================================== */
 
       gsap.utils.toArray(".floating-particle").forEach((particle, index) => {
         gsap.to(particle, {
-          x: index % 2 === 0 ? 10 : -12,
-          y: index % 2 === 0 ? -20 : 20,
-          duration: 2.2 + index * 0.4,
+          x: index % 2 === 0 ? 20 : -20,
+          y: index % 2 === 0 ? -30 : 30,
+          duration: 3 + index * 0.6,
           repeat: -1,
           yoyo: true,
           ease: "sine.inOut",
+        });
+
+        gsap.to(particle, {
+          scale: 1.3,
+          opacity: 0.8,
+          duration: 2.5 + index * 0.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: index * 0.15
         });
       });
 
@@ -339,40 +393,41 @@ export default function About() {
         const percentX = (x - centerX) / centerX;
         const percentY = (y - centerY) / centerY;
 
-        /* Card tilt */
-
-        rotateY(percentX * 12);
-        rotateX(-percentY * 12);
-
-        /* Image depth */
+        rotateY(percentX * 18);
+        rotateX(-percentY * 18);
 
         imageX(percentX * 12);
-        imageY(percentY * 9);
-        imageScale(1.07);
+        imageY(percentY * 10);
+        imageScale(1.08);
 
-        /* Cursor spotlight */
-
-        spotlightX(x - 100);
-        spotlightY(y - 100);
+        spotlightX(x - 120);
+        spotlightY(y - 120);
 
         gsap.to(glow, {
-          x: percentX * 20,
-          y: percentY * 20,
-          duration: 0.6,
+          x: percentX * 35,
+          y: percentY * 35,
+          duration: 0.5,
           ease: "power3.out",
         });
       };
 
       const handleMouseEnter = () => {
         gsap.to(card, {
-          scale: 1.025,
-          duration: 0.5,
-          ease: "power3.out",
+          scale: 1.03,
+          duration: 0.4,
+          ease: "back.out(1.8)",
         });
 
         gsap.to(spotlight, {
           opacity: 1,
           duration: 0.3,
+        });
+
+        gsap.to(glow, {
+          scale: 1.5,
+          opacity: 1,
+          duration: 0.4,
+          ease: "power2.out"
         });
       };
 
@@ -382,24 +437,26 @@ export default function About() {
 
         imageX(0);
         imageY(0);
-        imageScale(1.035);
+        imageScale(1);
 
         gsap.to(card, {
           scale: 1,
-          duration: 0.6,
-          ease: "power3.out",
+          duration: 0.7,
+          ease: "elastic.out(1, 0.5)",
         });
 
         gsap.to(glow, {
           x: 0,
           y: 0,
-          duration: 0.7,
+          scale: 1.4,
+          opacity: 0.9,
+          duration: 0.8,
           ease: "power3.out",
         });
 
         gsap.to(spotlight, {
           opacity: 0,
-          duration: 0.4,
+          duration: 0.5,
         });
       };
 
@@ -408,7 +465,7 @@ export default function About() {
       card.addEventListener("mouseleave", handleMouseLeave);
 
       /* =====================================================
-         CARD 3D HOVER
+         CARD 3D HOVER - ENHANCED
       ===================================================== */
 
       const cards = gsap.utils.toArray(".about-card");
@@ -416,24 +473,25 @@ export default function About() {
       cards.forEach((item) => {
         const icon = item.querySelector(".card-icon");
         const shineCard = item.querySelector(".card-shine");
+        const bgGradient = item.querySelector(".card-bg-gradient");
 
         const rx = gsap.quickTo(item, "rotationX", {
-          duration: 0.3,
+          duration: 0.35,
           ease: "power2.out",
         });
 
         const ry = gsap.quickTo(item, "rotationY", {
-          duration: 0.3,
+          duration: 0.35,
           ease: "power2.out",
         });
 
         const ix = gsap.quickTo(icon, "x", {
-          duration: 0.3,
+          duration: 0.35,
           ease: "power2.out",
         });
 
         const iy = gsap.quickTo(icon, "y", {
-          duration: 0.3,
+          duration: 0.35,
           ease: "power2.out",
         });
 
@@ -453,13 +511,19 @@ export default function About() {
           const px = (x - rect.width / 2) / (rect.width / 2);
           const py = (y - rect.height / 2) / (rect.height / 2);
 
-          ry(px * 8);
-          rx(-py * 8);
+          ry(px * 12);
+          rx(-py * 12);
 
-          ix(px * 6);
-          iy(py * 6);
+          ix(px * 10);
+          iy(py * 10);
 
           shineX(x - rect.width / 2);
+
+          gsap.to(bgGradient, {
+            opacity: 1.2,
+            duration: 0.5,
+            ease: "power2.out",
+          });
         };
 
         const handleLeave = () => {
@@ -468,6 +532,11 @@ export default function About() {
           ix(0);
           iy(0);
           shineX(-300);
+
+          gsap.to(bgGradient, {
+            opacity: 0,
+            duration: 0.5,
+          });
         };
 
         item.addEventListener("mousemove", handleMove);
@@ -480,24 +549,13 @@ export default function About() {
       });
 
       /* =====================================================
-         SCROLL PARALLAX
+         SCROLL PARALLAX - SUPER ENHANCED
       ===================================================== */
 
       gsap.to(".about-orb-one", {
-        y: -160,
-        x: 60,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-
-      gsap.to(".about-orb-two", {
-        y: 160,
-        x: -70,
+        y: -220,
+        x: 120,
+        scale: 1.3,
         ease: "none",
         scrollTrigger: {
           trigger: section,
@@ -507,13 +565,39 @@ export default function About() {
         },
       });
 
-      gsap.to(".about-grid", {
-        y: 70,
+      gsap.to(".about-orb-two", {
+        y: 220,
+        x: -130,
+        scale: 1.3,
         ease: "none",
         scrollTrigger: {
           trigger: section,
           start: "top bottom",
           end: "bottom top",
+          scrub: 1.4,
+        },
+      });
+
+      gsap.to(".about-grid", {
+        y: 120,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.8,
+        },
+      });
+
+      gsap.to(scene, {
+        y: -30,
+        scale: 1.05,
+        rotateX: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top center",
+          end: "bottom center",
           scrub: 1.5,
         },
       });
@@ -539,58 +623,75 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="relative mx-auto max-w-7xl overflow-hidden px-6 pb-24 pt-36 lg:px-10"
+      className="relative mx-auto max-w-7xl overflow-hidden px-6 pb-24 pt-36 lg:px-10 [background:radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.04)_0%,transparent_50%)]"
       style={{
         perspective: "1600px",
       }}
     >
       {/* =====================================================
-          BACKGROUND
+          BACKGROUND - MASSIVELY ENHANCED
       ===================================================== */}
 
-      <div className="about-orb-one pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-electric/10 blur-[130px]" />
+      {/* PRIMARY GLOW */}
+      <div className="about-orb-one pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-gradient-to-br from-electric/30 via-cyan-500/20 to-cyan-500/10 blur-[150px] shadow-[0_0_150px_rgba(0,255,255,0.5),0_0_80px_rgba(0,255,255,0.3)]" />
 
-      <div className="about-orb-two pointer-events-none absolute -right-40 top-[50%] h-[450px] w-[450px] rounded-full bg-cyan-500/10 blur-[150px]" />
+      {/* SECONDARY GLOW */}
+      <div className="about-orb-two pointer-events-none absolute -right-40 top-[50%] h-[450px] w-[450px] rounded-full bg-gradient-to-bl from-purple-500/25 via-purple-500/15 to-cyan-500/10 blur-[170px] shadow-[0_0_180px_rgba(168,85,247,0.4),0_0_100px_rgba(168,85,247,0.2)]" />
 
-      <div className="about-grid pointer-events-none absolute inset-0 opacity-[0.025]">
+      {/* ACCENT LIGHT */}
+      <div className="pointer-events-none absolute left-1/2 -top-32 h-96 w-96 -translate-x-1/2 rounded-full bg-gradient-to-b from-electric/15 via-transparent to-transparent blur-[140px]" />
+
+      {/* ENHANCED GRID */}
+      <div className="about-grid pointer-events-none absolute inset-0 opacity-[0.02]">
         <div
           className="h-full w-full"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-            backgroundSize: "55px 55px",
+              "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+            backgroundSize: "70px 70px",
           }}
         />
       </div>
 
+      {/* RADIAL GLOW CENTER */}
+      <div className="pointer-events-none absolute inset-0" style={{
+        background: "radial-gradient(circle at 50% 30%, rgba(0,255,255,0.08), transparent 50%)"
+      }} />
+
       {/* =====================================================
-          HEADER
+          HEADER - MASSIVELY ENHANCED
       ===================================================== */}
 
       <div className="relative z-10">
-        <div className="about-title-line flex items-center gap-3">
-          <span className="h-px w-12 bg-electric" />
+        <div className="about-title-line flex items-center gap-3 group">
+          <span className="h-px w-12 bg-gradient-to-r from-electric via-cyan-300 to-transparent group-hover:w-16 transition-all duration-500" />
 
-          <p className="font-mono text-xs tracking-[0.3em] text-electricGlow">
+          <p className="font-mono text-xs tracking-[0.35em] bg-gradient-to-r from-electric via-cyan-300 to-electric bg-clip-text text-transparent font-semibold animate-pulse">
             ABOUT ME
           </p>
 
           <Sparkles
-            size={14}
-            className="animate-pulse text-electricGlow"
+            size={16}
+            className="animate-pulse text-electricGlow drop-shadow-[0_0_15px_rgba(0,255,255,0.8)]"
           />
         </div>
 
-        <h1 className="about-title-line mt-5 font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+        <h1 className="about-title-line mt-6 font-display text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-7xl drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">
           More Than{" "}
-          <span className="text-electric">
-            Just Code.
+          <span className="relative">
+            <span className="absolute inset-0 bg-gradient-to-r from-electric via-cyan-300 to-purple-500 bg-clip-text text-transparent blur-xl opacity-50 animate-pulse">
+              Just Code.
+            </span>
+            <span className="bg-gradient-to-r from-electric via-cyan-300 to-purple-500 bg-clip-text text-transparent">
+              Just Code.
+            </span>
           </span>
         </h1>
 
-        <p className="about-description mt-5 max-w-2xl text-sm leading-relaxed text-mist/70 md:text-base">
+        <p className="about-description mt-6 max-w-2xl text-sm leading-relaxed text-mist/90 md:text-base lg:text-lg drop-shadow-[0_0_20px_rgba(255,255,255,0.05)]">
           I build digital experiences where clean code, thoughtful design,
-          and meaningful interactions come together.
+          and meaningful interactions come together. Every pixel, every function,
+          every moment crafted with intention.
         </p>
       </div>
 
@@ -600,73 +701,73 @@ export default function About() {
 
       <div className="relative z-10 mt-16 grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
         {/* =====================================================
-            PROFILE
+            PROFILE - PERFECTLY DISPLAYED & STYLED
         ===================================================== */}
 
         <div
           ref={profileSceneRef}
-          className="relative mx-auto h-[320px] w-[320px] sm:h-[370px] sm:w-[370px] lg:mx-0"
+          className="relative mx-auto h-[340px] w-[340px] sm:h-[390px] sm:w-[390px] lg:mx-0"
           style={{
             transformStyle: "preserve-3d",
           }}
         >
-          {/* GLOW */}
+          {/* GLOW - ENHANCED */}
 
           <div
             ref={glowRef}
-            className="absolute -inset-16 rounded-full bg-electric/20 blur-[90px]"
+            className="absolute -inset-16 rounded-full bg-gradient-to-br from-electric/35 via-cyan-400/20 to-purple-500/25 blur-[100px] shadow-[0_0_120px_rgba(0,255,255,0.5)]"
           />
 
-          {/* RING 1 */}
+          {/* RING 1 - ENHANCED */}
 
           <div
             ref={ring1Ref}
-            className="absolute -inset-5 rounded-[42px] border border-electric/30"
+            className="absolute -inset-5 rounded-[42px] border-2 border-electric/40 shadow-[0_0_30px_rgba(0,255,255,0.4),inset_0_0_20px_rgba(0,255,255,0.15)]"
             style={{
               transform: "rotateX(60deg) rotateZ(20deg)",
               transformStyle: "preserve-3d",
             }}
           />
 
-          {/* RING 2 */}
+          {/* RING 2 - ENHANCED */}
 
           <div
             ref={ring2Ref}
-            className="absolute -inset-9 rounded-[48px] border border-cyan-400/20"
+            className="absolute -inset-9 rounded-[48px] border border-cyan-400/30 shadow-[0_0_25px_rgba(0,255,255,0.25)]"
             style={{
               transform: "rotateX(65deg) rotateZ(-25deg)",
               transformStyle: "preserve-3d",
             }}
           />
 
-          {/* RING 3 */}
+          {/* RING 3 - ENHANCED */}
 
           <div
             ref={ring3Ref}
-            className="absolute -inset-14 rounded-[55px] border border-white/10"
+            className="absolute -inset-14 rounded-[55px] border border-white/15 shadow-[0_0_20px_rgba(255,255,255,0.1),inset_0_0_15px_rgba(0,255,255,0.08)]"
             style={{
               transform: "rotateX(70deg) rotateZ(40deg)",
               transformStyle: "preserve-3d",
             }}
           />
 
-          {/* PARTICLES */}
+          {/* PARTICLES - MASSIVELY ENHANCED */}
 
-          <div className="floating-particle absolute -right-5 top-8 z-30 h-3 w-3 rounded-full bg-electric shadow-[0_0_25px_rgba(0,255,255,0.9)]" />
+          <div className="floating-particle absolute -right-5 top-8 z-30 h-5 w-5 rounded-full bg-gradient-to-br from-electric to-cyan-300 shadow-[0_0_40px_rgba(0,255,255,1.3),0_0_20px_rgba(0,255,255,0.8)]" />
 
-          <div className="floating-particle absolute -bottom-4 left-12 z-30 h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_20px_rgba(0,255,255,0.8)]" />
+          <div className="floating-particle absolute -bottom-4 left-12 z-30 h-3 w-3 rounded-full bg-gradient-to-br from-cyan-300 to-blue-400 shadow-[0_0_35px_rgba(0,255,255,1)]" />
 
-          <div className="floating-particle absolute -left-5 top-1/2 z-30 h-2.5 w-2.5 rounded-full bg-electric shadow-[0_0_20px_rgba(0,255,255,0.8)]" />
+          <div className="floating-particle absolute -left-5 top-1/2 z-30 h-4 w-4 rounded-full bg-gradient-to-br from-electric to-purple-400 shadow-[0_0_38px_rgba(0,255,255,1)]" />
 
-          <div className="floating-particle absolute right-10 bottom-10 z-30 h-1.5 w-1.5 rounded-full bg-white/80" />
+          <div className="floating-particle absolute right-10 bottom-10 z-30 h-2.5 w-2.5 rounded-full bg-gradient-to-br from-white/90 to-cyan-200 shadow-[0_0_30px_rgba(255,255,255,1)]" />
 
           {/* =====================================================
-              IMAGE CARD
+              IMAGE CARD CONTAINER
           ===================================================== */}
 
           <div
             ref={profileCardRef}
-            className="glass group relative h-full w-full overflow-hidden rounded-[32px] border border-electric/30 shadow-[0_30px_80px_rgba(0,0,0,0.45),0_0_60px_rgba(0,255,255,0.14)]"
+            className="group relative h-full w-full overflow-hidden rounded-[32px] border-2 border-electric/50 bg-black/60 shadow-[0_30px_100px_rgba(0,0,0,0.8),0_0_80px_rgba(0,255,255,0.3)] backdrop-blur-md"
             style={{
               transformStyle: "preserve-3d",
               willChange: "transform",
@@ -676,172 +777,192 @@ export default function About() {
 
             <div
               ref={spotlightRef}
-              className="pointer-events-none absolute left-0 top-0 z-30 h-[200px] w-[200px] rounded-full bg-electric/20 opacity-0 blur-[55px]"
+              className="pointer-events-none absolute left-0 top-0 z-30 h-[240px] w-[240px] rounded-full bg-gradient-to-r from-electric/25 to-cyan-400/15 opacity-0 blur-[70px]"
             />
 
-            {/* IMAGE */}
+            {/* IMAGE WRAPPER */}
 
-            <div className="relative h-full w-full overflow-hidden rounded-[32px] bg-gradient-to-br from-graphite via-panel to-ink">
+            <div className="relative h-full w-full overflow-hidden rounded-[30px] bg-gradient-to-br from-graphite via-panel to-ink">
               <img
                 ref={imageRef}
                 src={profile}
                 alt="Fahad Ahmad"
-                className="h-full w-full object-cover object-[50%_12%]"
+                className="h-full w-full object-cover object-[center_18%] brightness-110 contrast-125 transition-transform duration-500"
                 style={{
                   willChange: "transform",
-                  transformOrigin: "center center",
                 }}
               />
 
-              {/* DARK GRADIENT */}
+              {/* MULTI-LAYER OVERLAYS FOR 3D DEPTH */}
 
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/10" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
 
-              {/* ELECTRIC COLOR */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-electric/[0.08] via-transparent to-cyan-400/[0.08]" />
 
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-electric/10 via-transparent to-cyan-400/10 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+              <div className="card-bg-gradient pointer-events-none absolute inset-0 bg-gradient-to-br from-electric/15 via-transparent to-purple-500/10 opacity-0 transition-opacity duration-500" />
 
-              {/* =================================================
-                  MOVING LIGHT
-              ================================================= */}
+              {/* LIGHT SWEEP */}
 
               <div
                 ref={shineRef}
-                className="pointer-events-none absolute left-0 top-[-30%] z-40 h-[160%] w-[25%] rotate-[20deg] bg-gradient-to-r from-transparent via-white/25 to-transparent blur-[2px]"
+                className="pointer-events-none absolute left-0 top-[-30%] z-40 h-[160%] w-[28%] rotate-[20deg] bg-gradient-to-r from-transparent via-white/30 to-transparent blur-[1px]"
               />
 
-              {/* =================================================
-                  TOP CORNER STATUS
-              ================================================= */}
+              {/* TOP CORNER STATUS */}
 
               <div
-                className="absolute right-4 top-4 z-40 flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1.5 backdrop-blur-xl"
+                className="absolute right-4 top-4 z-40 flex items-center gap-2 rounded-full border border-electric/40 bg-black/60 px-3 py-1.5 backdrop-blur-xl shadow-[0_0_20px_rgba(0,255,255,0.2)]"
                 style={{
-                  transform: "translateZ(35px)",
+                  transform: "translateZ(30px)",
                 }}
               >
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-electric shadow-[0_0_10px_rgba(0,255,255,1)]" />
+                <span className="h-2 w-2 animate-pulse rounded-full bg-electric shadow-[0_0_12px_rgba(0,255,255,1)]" />
 
-                <span className="font-mono text-[9px] tracking-widest text-white/70">
+                <span className="font-mono text-[9px] tracking-widest text-white/90 font-bold">
                   ONLINE
                 </span>
               </div>
 
-              {/* =================================================
-                  BOTTOM INFO
-              ================================================= */}
+              {/* BOTTOM INFO CARD */}
 
               <div
-                className="absolute bottom-5 left-5 right-5 z-40"
+                className="absolute bottom-4 left-4 right-4 z-40"
                 style={{
-                  transform: "translateZ(45px)",
+                  transform: "translateZ(40px)",
                 }}
               >
-                <div className="rounded-2xl border border-white/10 bg-black/35 px-4 py-3 backdrop-blur-xl transition-all duration-500 group-hover:border-electric/40 group-hover:bg-black/50">
+                <div className="rounded-2xl border border-electric/40 bg-black/75 px-4 py-3 backdrop-blur-xl shadow-[0_0_30px_rgba(0,255,255,0.15)] transition-all duration-500 group-hover:border-electric/80 group-hover:bg-black/90">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-mono text-[9px] tracking-[0.3em] text-electricGlow">
+                      <p className="font-mono text-[9px] tracking-[0.3em] bg-gradient-to-r from-electric to-cyan-300 bg-clip-text text-transparent font-bold">
                         FAHAD AHMAD
                       </p>
 
-                      <p className="mt-1 text-sm font-semibold text-white">
+                      <p className="mt-0.5 text-xs font-semibold text-white/90">
                         Full-Stack Developer
                       </p>
                     </div>
 
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-electric/20 bg-electric/5">
-                      <ArrowDownRight
-                        size={16}
-                        className="text-electric transition-transform duration-500 group-hover:rotate-45"
-                      />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full border border-electric/40 bg-electric/20 text-electric transition-all duration-300 group-hover:scale-110 group-hover:border-electric">
+                      <ArrowDownRight size={15} className="transition-transform duration-300 group-hover:rotate-45" />
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* BORDER */}
+              {/* BORDER INNER RINGS */}
 
-              <div className="pointer-events-none absolute inset-0 rounded-[32px] border border-transparent transition-all duration-500 group-hover:border-electric/50" />
+              <div className="pointer-events-none absolute inset-0 rounded-[30px] ring-1 ring-white/20" />
+              <div className="pointer-events-none absolute inset-1 rounded-[28px] ring-1 ring-electric/30" />
             </div>
           </div>
         </div>
 
         {/* =====================================================
-            TEXT
+            TEXT - MASSIVELY ENHANCED
         ===================================================== */}
 
-        <div className="relative space-y-5">
-          <p className="about-paragraph text-base leading-relaxed text-mist md:text-lg">
-            I'm Fahad Ahmad, a Computer Science student who treats every
+        <div className="relative space-y-7">
+          {/* DECORATIVE BACKGROUND */}
+          <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-gradient-to-br from-electric/10 to-transparent blur-[100px] pointer-events-none" />
+          
+          <p className="about-paragraph text-base leading-relaxed text-mist/95 md:text-lg lg:text-xl bg-gradient-to-r from-white via-mist/90 to-mist/80 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,255,255,0.05)] relative">
+            I'm <span className="font-semibold bg-gradient-to-r from-electric to-cyan-300 bg-clip-text text-transparent">Fahad Ahmad</span>, a Computer Science student who treats every
             project like a small product, not just an assignment. My journey
             started with curiosity about how websites actually work under the
             hood, and it's grown into a genuine passion for building
             full-stack applications end to end.
           </p>
 
-          <p className="about-paragraph text-base leading-relaxed text-mist md:text-lg">
+          <p className="about-paragraph text-base leading-relaxed text-mist/95 md:text-lg lg:text-xl bg-gradient-to-r from-white via-mist/90 to-mist/80 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,255,255,0.05)] relative">
             I enjoy the entire process — designing clean interfaces,
             structuring reliable backends, modeling data, and wiring it all
-            together into something people can actually use. React, Node.js and
+            together into something people can actually use. <span className="bg-gradient-to-r from-electric via-cyan-300 to-electric bg-clip-text text-transparent font-semibold">React, Node.js</span> and
             modern databases are where I spend most of my time, alongside
-            Flutter for mobile.
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-semibold"> Flutter</span> for mobile.
           </p>
 
-          <p className="about-paragraph text-base leading-relaxed text-mist md:text-lg">
+          <p className="about-paragraph text-base leading-relaxed text-mist/95 md:text-lg lg:text-xl bg-gradient-to-r from-white via-mist/90 to-mist/80 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,255,255,0.05)] relative">
             I approach problems methodically: break them down, research,
             prototype, and refine. Looking ahead, my goal is to keep deepening
             my full-stack skills, contribute to meaningful products, and
-            eventually build things that scale to real users.
+            eventually build things that <span className="bg-gradient-to-r from-electric to-cyan-300 bg-clip-text text-transparent font-semibold">scale to real users</span>.
           </p>
 
           {/* =====================================================
-              CARDS
+              CARDS - MASSIVELY ENHANCED
           ===================================================== */}
 
-          <div className="grid grid-cols-2 gap-4 pt-6">
+          <div className="grid grid-cols-2 gap-4 pt-8">
             {CARDS.map((item, index) => {
               const Icon = item.icon;
 
               return (
                 <div
                   key={item.label}
-                  className="about-card group relative overflow-hidden rounded-2xl border border-white/10 bg-panel/50 px-4 py-4 backdrop-blur-xl transition-colors duration-300 hover:border-electric/40"
+                  className="about-card group relative overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-transparent px-4 py-4 backdrop-blur-2xl transition-all duration-500 hover:border-electric/80 hover:bg-gradient-to-br hover:from-electric/[0.2] hover:via-purple-500/[0.1] hover:to-cyan-400/[0.05] hover:shadow-[0_0_60px_rgba(0,255,255,0.35),inset_0_0_40px_rgba(0,255,255,0.1)]"
                   style={{
                     transformStyle: "preserve-3d",
-                    perspective: "900px",
+                    perspective: "1000px",
                     willChange: "transform",
                   }}
                 >
+                  {/* CARD GLOW BG */}
+                  <div className="pointer-events-none absolute -inset-12 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    style={{
+                      background: `linear-gradient(135deg, ${item.gradient})`,
+                      filter: "blur(40px)",
+                      zIndex: -1
+                    }}
+                  />
+
+                  {/* SHINE EFFECT */}
                   <div
-                    className="card-shine pointer-events-none absolute -left-24 top-0 h-full w-16 rotate-12 bg-gradient-to-r from-transparent via-white/15 to-transparent"
+                    className="card-shine pointer-events-none absolute -left-24 top-0 h-full w-16 rotate-12 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                     style={{
                       transform: "translateX(-300px)",
                     }}
                   />
 
-                  <span className="absolute right-3 top-2 font-mono text-[9px] text-white/10">
+                  {/* GRADIENT OVERLAY */}
+                  <div
+                    className="card-bg-gradient pointer-events-none absolute inset-0 opacity-0 rounded-2xl transition-opacity duration-500"
+                    style={{
+                      background: `linear-gradient(135deg, ${item.gradient})`,
+                    }}
+                  />
+
+                  {/* NUMBER LABEL */}
+                  <span className="absolute right-3 top-2 font-mono text-[9px] text-white/20 font-semibold group-hover:text-electric/60 transition-colors duration-300">
                     0{index + 1}
                   </span>
 
+                  {/* CONTENT */}
                   <div
                     className="card-icon relative z-10 flex items-center gap-3"
                     style={{
                       transform: "translateZ(25px)",
                     }}
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-electric/20 bg-electric/5 transition-all duration-300 group-hover:border-electric/50 group-hover:bg-electric/10 group-hover:shadow-[0_0_25px_rgba(0,255,255,0.15)]">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-electric/35 bg-gradient-to-br from-electric/20 to-electric/8 shadow-[0_0_25px_rgba(0,255,255,0.15)] transition-all duration-500 group-hover:border-electric/70 group-hover:bg-gradient-to-br group-hover:from-electric/35 group-hover:to-cyan-400/15 group-hover:shadow-[0_0_50px_rgba(0,255,255,0.4),inset_0_0_20px_rgba(0,255,255,0.1)]">
                       <Icon
-                        size={18}
-                        className="text-electric transition-transform duration-300 group-hover:scale-110"
+                        size={20}
+                        className="text-electric transition-all duration-500 group-hover:scale-140 group-hover:rotate-12 drop-shadow-[0_0_10px_rgba(0,255,255,0.6)]"
                       />
                     </div>
 
-                    <span className="text-xs font-medium leading-snug text-white sm:text-sm">
+                    <span className="text-xs font-semibold leading-snug text-white/95 sm:text-sm transition-all duration-500 group-hover:text-white group-hover:drop-shadow-[0_0_15px_rgba(0,255,255,0.3)]">
                       {item.label}
                     </span>
                   </div>
 
-                  <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-electric transition-all duration-500 group-hover:w-full" />
+                  {/* BOTTOM BORDER */}
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-electric via-cyan-300 to-transparent shadow-[0_0_20px_rgba(0,255,255,1),0_0_40px_rgba(0,255,255,0.6)] transition-all duration-700 group-hover:w-full" />
+
+                  {/* CORNER ACCENT */}
+                  <div className="absolute top-0 right-0 h-8 w-8 rounded-bl-full opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{
+                    background: "radial-gradient(circle at top right, rgba(0,255,255,0.3), transparent 70%)"
+                  }} />
                 </div>
               );
             })}
@@ -850,23 +971,28 @@ export default function About() {
       </div>
 
       {/* =====================================================
-          BOTTOM
+          BOTTOM - MASSIVELY ENHANCED
       ===================================================== */}
 
-      <div className="about-title-line relative z-10 mt-24 flex items-center gap-4">
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-electric/20 to-transparent" />
+      <div className="about-title-line relative z-10 mt-32">
+        <div className="relative flex items-center gap-4 group">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-electric/40 to-transparent group-hover:via-electric/60 transition-all duration-500" />
 
-        <div className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-electric shadow-[0_0_12px_rgba(0,255,255,0.9)]" />
+          <div className="flex items-center gap-3 px-6 py-3 rounded-full border border-electric/40 bg-gradient-to-r from-electric/[0.12] via-purple-500/[0.08] to-cyan-400/[0.08] backdrop-blur-xl shadow-[0_0_40px_rgba(0,255,255,0.2)] hover:shadow-[0_0_60px_rgba(0,255,255,0.35)] transition-all duration-500 group-hover:border-electric/70 group-hover:bg-gradient-to-r group-hover:from-electric/[0.2] group-hover:via-purple-500/[0.12] group-hover:to-cyan-400/[0.12]">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-gradient-to-br from-electric to-cyan-300 shadow-[0_0_20px_rgba(0,255,255,1.2),0_0_10px_rgba(0,255,255,0.6)]" />
 
-          <span className="font-mono text-[9px] tracking-[0.3em] text-mist/40">
-            ALWAYS LEARNING
-          </span>
+            <span className="font-mono text-[10px] tracking-[0.35em] bg-gradient-to-r from-electric via-cyan-300 to-electric bg-clip-text text-transparent font-bold drop-shadow-[0_0_15px_rgba(0,255,255,0.4)]">
+              ALWAYS LEARNING
+            </span>
 
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-electric shadow-[0_0_12px_rgba(0,255,255,0.9)]" />
+            <span className="h-2 w-2 animate-pulse rounded-full bg-gradient-to-br from-cyan-300 to-electric shadow-[0_0_20px_rgba(0,255,255,1.2),0_0_10px_rgba(0,255,255,0.6)]" />
+          </div>
+
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent via-electric/40 to-transparent group-hover:via-electric/60 transition-all duration-500" />
         </div>
 
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-electric/20 to-transparent" />
+        {/* DECORATIVE BOTTOM GLOW */}
+        <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 h-64 w-96 rounded-full bg-gradient-to-t from-electric/20 to-transparent blur-[120px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       </div>
     </section>
   );

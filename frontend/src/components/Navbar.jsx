@@ -19,11 +19,13 @@ export default function Navbar() {
   const navRef = useRef(null);
   const menuRef = useRef(null);
   const itemsRef = useRef([]);
+  const iconRef = useRef(null);
+  const logoRef = useRef(null);
 
   const location = useLocation();
 
   /* =========================================================
-     SCROLL
+     SCROLL - bar state + progress bar
   ========================================================= */
 
   useEffect(() => {
@@ -60,6 +62,19 @@ export default function Navbar() {
       }
     );
   }, []);
+
+  /* =========================================================
+     MENU ICON MORPH (menu <-> close)
+  ========================================================= */
+
+  useEffect(() => {
+    if (!iconRef.current) return;
+    gsap.fromTo(
+      iconRef.current,
+      { rotate: -90, opacity: 0, scale: 0.6 },
+      { rotate: 0, opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }
+    );
+  }, [open]);
 
   /* =========================================================
      MENU OPEN / CLOSE ANIMATION
@@ -113,8 +128,21 @@ export default function Navbar() {
         },
         "-=0.35"
       );
+
+      // Ambient glow drift while open
+      gsap.to(".mobile-menu-glow", {
+        x: 30,
+        y: -20,
+        scale: 1.1,
+        duration: 6,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
     } else {
       // CLOSE MENU
+      gsap.killTweensOf(".mobile-menu-glow");
+
       const tl = gsap.timeline({
         onComplete: () => {
           // Disable interaction only after animation finishes
@@ -155,6 +183,7 @@ export default function Navbar() {
     return () => {
       gsap.killTweensOf(menu);
       gsap.killTweensOf(itemsRef.current);
+      gsap.killTweensOf(".mobile-menu-glow");
     };
   }, [open]);
 
@@ -179,6 +208,27 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, []);
+
+  /* =========================================================
+     LOGO HOVER TILT
+  ========================================================= */
+
+  const handleLogoMove = (e) => {
+    if (window.innerWidth < 768) return;
+    const rect = logoRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    gsap.to(logoRef.current, {
+      x: x * 0.15,
+      y: y * 0.15,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+  };
+
+  const handleLogoLeave = () => {
+    gsap.to(logoRef.current, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" });
+  };
 
   /* =========================================================
      HANDLE MENU LINK
@@ -229,16 +279,18 @@ export default function Navbar() {
               LOGO
           ================================================= */}
 
-          {/* LOGO */}
           <NavLink
             to="/"
             onClick={() => setOpen(false)}
-            className="flex items-center transition-opacity duration-300 hover:opacity-80"
+            className="flex items-center transition-opacity duration-300 hover:opacity-90"
           >
             <img
+              ref={logoRef}
+              onMouseMove={handleLogoMove}
+              onMouseLeave={handleLogoLeave}
               src="/logo.png"
               alt="Fahad Ahmad"
-              className="h-12 w-auto object-contain"
+              className="h-12 w-auto object-contain will-change-transform"
             />
           </NavLink>
 
@@ -258,10 +310,13 @@ export default function Navbar() {
                     `
                     group
                     relative
+                    inline-block
                     text-sm
                     font-medium
                     tracking-wide
-                    transition-colors
+                    transition-all
+                    duration-300
+                    hover:-translate-y-0.5
                     ${isActive
                       ? "text-white"
                       : "text-mist hover:text-white"
@@ -279,7 +334,10 @@ export default function Navbar() {
                           -bottom-1.5
                           left-0
                           h-px
-                          bg-electric
+                          bg-gradient-to-r
+                          from-electric
+                          to-cyan-300
+                          shadow-[0_0_8px_rgba(0,255,255,0.7)]
                           transition-all
                           duration-300
                           ${isActive
@@ -302,6 +360,7 @@ export default function Navbar() {
           <NavLink
             to="/contact"
             className="
+              group
               hidden
               items-center
               gap-1.5
@@ -316,6 +375,7 @@ export default function Navbar() {
               text-white
               transition-all
               duration-300
+              hover:scale-105
               hover:bg-electric
               hover:shadow-glowSm
               md:inline-flex
@@ -361,12 +421,7 @@ export default function Navbar() {
               md:hidden
             "
           >
-            <span
-              className="
-                transition-transform
-                duration-300
-              "
-            >
+            <span ref={iconRef} className="block">
               {open ? (
                 <X size={27} />
               ) : (
@@ -412,11 +467,12 @@ export default function Navbar() {
         />
 
         {/* =================================================
-            GLOW 1
+            AMBIENT GLOWS - single color, drifting
         ================================================= */}
 
         <div
           className="
+            mobile-menu-glow
             pointer-events-none
             absolute
             -right-32
@@ -429,12 +485,9 @@ export default function Navbar() {
           "
         />
 
-        {/* =================================================
-            GLOW 2
-        ================================================= */}
-
         <div
           className="
+            mobile-menu-glow
             pointer-events-none
             absolute
             -bottom-32
@@ -442,7 +495,7 @@ export default function Navbar() {
             h-80
             w-80
             rounded-full
-            bg-purple-500/10
+            bg-electric/[0.07]
             blur-[100px]
           "
         />
@@ -518,7 +571,7 @@ export default function Navbar() {
                     sm:text-5xl
                     ${isActive
                       ? "text-electricGlow"
-                      : "text-white hover:text-electric"
+                      : "text-white hover:text-electric hover:translate-x-1.5"
                     }
                     `
                   }
